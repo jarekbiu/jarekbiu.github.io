@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="​    LeetCode 6 ZigZag Conversion Problem：  Solution： 本题为找规律的题目，从第一行开始，直接选择对应的字符。 对于正V，j = 2*（numRows-i-1） 对于倒V，j = 2*j Code： 1234567891011121314151617181920public String convert(String s, int numRows">
+<meta name="description" content="​    LeetCode 6 ZigZag Conversion Problem：  Solution： 本题为找规律的题目，从第一行开始，先选择第一个出现的字符，然后根据公式得到后面的对应的字符，需要判断下标是否溢出，或者是否是顶点，顶点只加一次。 对于正V，$$j = 2*（numRows-i-1）$$ 对于倒V，$$j = 2*j$$ Code： 123456789101112131415">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一颗栗子">
 <meta property="og:url" content="http://yoursite.com/2018/12/04/LeetCode 6 ZigZag Conversion/index.html">
 <meta property="og:site_name" content="一颗栗子">
-<meta property="og:description" content="​    LeetCode 6 ZigZag Conversion Problem：  Solution： 本题为找规律的题目，从第一行开始，直接选择对应的字符。 对于正V，j = 2*（numRows-i-1） 对于倒V，j = 2*j Code： 1234567891011121314151617181920public String convert(String s, int numRows">
+<meta property="og:description" content="​    LeetCode 6 ZigZag Conversion Problem：  Solution： 本题为找规律的题目，从第一行开始，先选择第一个出现的字符，然后根据公式得到后面的对应的字符，需要判断下标是否溢出，或者是否是顶点，顶点只加一次。 对于正V，$$j = 2*（numRows-i-1）$$ 对于倒V，$$j = 2*j$$ Code： 123456789101112131415">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="c:/Users/Jarek-Lab/AppData/Roaming/Typora/typora-user-images/1543896043274.png">
-<meta property="og:updated_time" content="2018-12-04T04:09:46.779Z">
+<meta property="og:updated_time" content="2018-12-05T02:13:54.537Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一颗栗子">
-<meta name="twitter:description" content="​    LeetCode 6 ZigZag Conversion Problem：  Solution： 本题为找规律的题目，从第一行开始，直接选择对应的字符。 对于正V，j = 2*（numRows-i-1） 对于倒V，j = 2*j Code： 1234567891011121314151617181920public String convert(String s, int numRows">
+<meta name="twitter:description" content="​    LeetCode 6 ZigZag Conversion Problem：  Solution： 本题为找规律的题目，从第一行开始，先选择第一个出现的字符，然后根据公式得到后面的对应的字符，需要判断下标是否溢出，或者是否是顶点，顶点只加一次。 对于正V，$$j = 2*（numRows-i-1）$$ 对于倒V，$$j = 2*j$$ Code： 123456789101112131415">
 <meta name="twitter:image" content="c:/Users/Jarek-Lab/AppData/Roaming/Typora/typora-user-images/1543896043274.png">
 
 
@@ -350,11 +350,11 @@
 <p>Problem：</p>
 <p><img src="C:\Users\Jarek-Lab\AppData\Roaming\Typora\typora-user-images\1543896043274.png" alt="1543896043274"></p>
 <p>Solution：</p>
-<p>本题为找规律的题目，从第一行开始，直接选择对应的字符。</p>
-<p>对于正V，j = 2*（numRows-i-1）</p>
-<p>对于倒V，j = 2*j</p>
+<p>本题为找规律的题目，从第一行开始，先选择第一个出现的字符，然后根据公式得到后面的对应的字符，需要判断下标是否溢出，或者是否是顶点，顶点只加一次。</p>
+<p>对于正V，<br>$$<br>j = 2*（numRows-i-1）<br>$$</p>
+<p>对于倒V，<br>$$<br>j = 2*j<br>$$</p>
 <p>Code：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public String convert(String s, int numRows) &#123;</span><br><span class="line">        int j = 0;</span><br><span class="line">        if(numRows ==1)&#123;</span><br><span class="line">            return s;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        StringBuilder sb = new StringBuilder();</span><br><span class="line">        for(int i = 0 ;i&lt;numRows;i++)&#123;</span><br><span class="line">            j=i;</span><br><span class="line">            while(j&lt;s.length())&#123;</span><br><span class="line">                sb.append(s.charAt(j));</span><br><span class="line">                j+=2*(numRows-i-1);</span><br><span class="line">                if(i!=0&amp;&amp;i!=numRows-1&amp;&amp;j&lt;s.length())&#123;</span><br><span class="line">                    sb.append(s.charAt(j));</span><br><span class="line">                &#125;</span><br><span class="line">                j+=2*i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return sb.toString();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">convert</span><span class="params">(String s, <span class="keyword">int</span> numRows)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(numRows ==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ;i&lt;numRows;i++)&#123;</span><br><span class="line">            j=i;</span><br><span class="line">            <span class="keyword">while</span>(j&lt;s.length())&#123;</span><br><span class="line">                sb.append(s.charAt(j));</span><br><span class="line">                j+=<span class="number">2</span>*(numRows-i-<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">if</span>(i!=<span class="number">0</span>&amp;&amp;i!=numRows-<span class="number">1</span>&amp;&amp;j&lt;s.length())&#123;</span><br><span class="line">                    sb.append(s.charAt(j));</span><br><span class="line">                &#125;</span><br><span class="line">                j+=<span class="number">2</span>*i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
